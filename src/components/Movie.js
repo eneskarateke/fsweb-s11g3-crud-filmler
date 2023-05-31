@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import axios from "axios";
 
 const Movie = (props) => {
-  const { addToFavorites } = props;
+  const { addToFavorites, deleteMovie } = props;
 
   const [movie, setMovie] = useState("");
 
   const { id } = useParams();
-  const { push } = useHistory();
+  // const { push } = useHistory();
 
   useEffect(() => {
     axios
@@ -55,12 +55,16 @@ const Movie = (props) => {
           Favorilere ekle
         </button>
         <Link
-          to={`/movies/edit/${movie.id}`}
+          to={`/movies/edit/${id}`}
           className="myButton bg-blue-600 hover:bg-blue-500"
         >
           Edit
         </Link>
-        <button type="button" className="myButton bg-red-600 hover:bg-red-500">
+        <button
+          onClick={() => deleteMovie(movie.id)}
+          type="button"
+          className="myButton bg-red-600 hover:bg-red-500"
+        >
           Sil
         </button>
       </div>
