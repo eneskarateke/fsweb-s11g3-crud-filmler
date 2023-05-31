@@ -41,7 +41,11 @@ const App = (props) => {
       });
   };
 
-  const addToFavorites = (movie) => {};
+  const addToFavorites = (movie) => {
+    if (!favoriteMovies.find((favMovie) => favMovie.id === movie.id)) {
+      setFavoriteMovies([...favoriteMovies, movie]);
+    }
+  };
 
   return (
     <div>
